@@ -1,0 +1,28 @@
+Outer.java
+class Outer{
+int outer_X=10;
+void test()
+{
+Inner in=new Inner();
+in.display();
+}
+class Inner
+{
+int y=20;
+void display()
+{
+System.out.println("The value of outer_X: "+ outer_X);
+}
+void showy()
+{
+System.out.println("inner class variable y : "+ y);
+}
+}
+public static void main(String a[])
+{
+Outer outobj=new Outer();
+outobj.test();
+Outer.Inner inobj=outobj.new Inner();
+inobj.showy();
+}
+}

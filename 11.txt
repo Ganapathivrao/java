@@ -1,0 +1,28 @@
+import java.io.*;
+class FileHandling {
+ public static void main(String[] args) {
+try{
+File fileIn = new File("E:\\JAVALAB\\data.txt");
+File fileOut = new File("d:\\target.txt");
+
+FileInputStream streamIn = new FileInputStream(fileIn);
+FileOutputStream streamOut = new FileOutputStream(fileOut);
+ int ch;
+while ((ch = streamIn.read()) != -1)
+ {
+streamOut.write(ch);
+ }
+ System.out.println("\nFile Copy succeful ");
+ streamIn.close();
+ streamOut.close();
+}
+catch(FileNotFoundException e)
+{
+ System.err.println("FileCopy: " + e);
+}
+catch(IOException e)
+{
+ System.err.println("FileCopy: " + e);
+}
+ }
+}

@@ -1,0 +1,125 @@
+import java.io.*;
+import java.util.*;
+interface StackOperations {
+int MAX = 3;
+void push(int item);
+void pop();
+void display();
+}
+class FixedStack implements StackOperations{
+int[] st;
+int top;
+public FixedStack(){
+st = new int[MAX];
+top = -1;
+}
+public void push(int item){
+if(top==MAX-1){
+System.out.println("--- Stack Overflow ---");
+return;
+}
+else{
+st[++top]=item;
+System.out.println("Inserted Successfully");
+}
+}
+public void pop(){
+if(top==-1){
+System.out.println("--- Stack Underflow ---");
+return;
+}
+System.out.println("Item deleted: " + st[top--]);
+}
+public void display(){
+if(top==-1){
+System.out.println("Stack is Empty");
+return;
+}
+else{
+System.out.println("***Contents***");
+for(int i=top;i>=0;i--)
+System.out.print(st[i]+ " ");
+System.out.println("\n---------------");
+}
+}
+}
+class DynamicStack implements StackOperations{
+int[] stk;
+int top;
+public DynamicStack(){
+stk=new int[MAX];
+top=-1;
+}
+public void push(int item){
+if(top==stk.length-1){
+System.out.println("--- Stack Overflow ---");
+System.out.println("***** Stack is Resized ****");
+int[] temp=new int[stk.length*2];
+System.out.println("..NEW STACK SIZE:"+temp.length);
+for(int i=0;i<stk.length;i++)
+temp[i]=stk[i];
+stk=temp;
+stk[++top]=item;
+}
+else{
+stk[++top]=item;
+System.out.println("Inserted Successfully");
+}
+}
+public void pop(){
+if(top==-1){
+System.out.println("--- Stack Underflow ---");
+return;
+}
+System.out.println("Item deleted: " + stk[top--]);
+}
+public void display(){
+if(top==-1){
+System.out.println("Stack is Empty");
+return;
+}
+else{
+System.out.println("***Contents***");
+for(int i=top;i>=0;i--)
+System.out.print(stk[i]+ " ");
+System.out.println("\n---------------");
+}
+}
+}
+class Stack{
+public static void main(String[] args)throws IOException{
+int ch,opt,item;
+StackOperations stopr;
+Scanner sc=new Scanner(System.in);
+System.out.println("1. Fixed Stack\n2. Dynamic Stack");
+System.out.println("Enter your choice:");
+ch=sc.nextInt();
+switch(ch){
+case 1: System.out.println("*****Fixed Stack*****");
+stopr = new FixedStack();
+break;
+case 2: System.out.println("****Dynamic Stack****");
+stopr = new DynamicStack();
+break;
+default: System.out.println("Invalid Choice");
+return;
+}
+while(true){
+System.out.println("1.Push\n2.Pop\n3.Display");
+System.out.println("Enter your option:");
+opt=sc.nextInt();
+switch(opt){
+case 1: System.out.println("Enter element: ");
+item=sc.nextInt();
+stopr.push(item);
+break;
+case 2: stopr.pop();
+break;
+case 3: stopr.display();
+break;
+default: System.out.println("Invalid Choice");
+System.exit(0);
+}
+}
+}
+}

@@ -1,0 +1,73 @@
+import java.io.*;
+import java.util.LinkedList;
+public class LinkedListDemo {
+public static void main(String[] args) throws IOException{
+LinkedList list = new LinkedList();
+BufferedReader br = new BufferedReader (new
+InputStreamReader(System.in) );
+int choice;
+String element;
+while(true){
+System.out.println("Menu :");
+menu();
+System.out.print("Enter your Choice :");
+choice = Integer.parseInt(br.readLine());
+switch(choice)
+{
+ case 1:
+System.out.println("\nTo Insert at Begining :");
+System.out.print("Enter Element :");
+element = br.readLine();
+list.addFirst(element);
+System.out.println("Elements after Add :");
+System.out.println(list);
+ break;
+ case 2:
+System.out.println("\nTo Insert at End :");
+System.out.print("Enter Element :");
+element = br.readLine();
+list.addLast(element);
+System.out.println("Elements after Add :");
+System.out.println(list);
+ break;
+ case 3:
+if (list.isEmpty() == true)
+System.out.println("\nList is Empty :");
+else{
+element = (String) list.removeFirst();
+System.out.println("\nFirst Element removed is :" +
+element);
+System.out.println("\nList of Elements after removed First :");
+System.out.println(list);
+}
+ break;
+ case 4:
+if (list.isEmpty() == true)
+System.out.println("\nList is Empty :");
+else
+{
+element = (String) list.removeLast();
+System.out.println ("\nLast Element removed
+is :" + element);
+System.out.println ("\n Elements after removed
+Last :" );
+System.out.println(list);
+}
+ break;
+ case 5:
+System.out.println("\nList of Elements is :" );
+System.out.println(list);
+ break;
+ default: java.lang.System.exit(0);
+}
+ }
+}
+static void menu()
+{
+System.out.println("1. Add element at begining..");
+System.out.println("2. Add element at End..");
+System.out.println("3. Remove element at beginning");
+System.out.println("4. Remove element at End..");
+System.out.println("5. Display List..");
+}
+}

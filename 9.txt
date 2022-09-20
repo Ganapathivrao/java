@@ -1,0 +1,39 @@
+EnumPgm.java
+import java.io.*;
+enum DaysOfWeek
+{
+Sunday(1),Monday(2),Tuesday(3),Wednesday(4),
+Thursday(5),Friday(6),Saturday(7);
+private int day_num;
+DaysOfWeek(int d)
+{
+day_num=d;
+}
+int getDayNum()
+{
+return(day_num);
+}
+boolean isWorkDay() {
+if ( day_num == DaysOfWeek.Sunday.getDayNum())
+return false;
+if (day_num == DaysOfWeek.Saturday.getDayNum())
+return false;
+return true;
+}
+}
+class EnumPgm
+{
+public static void main(String[] args)
+{
+boolean flag = DaysOfWeek.Sunday.isWorkDay();
+System.out.println ("WeekDay = " + flag);
+if(flag)
+System.out.println ("Its Working Day:");
+else
+System.out.println ("Its Holiday:");
+System.out.println("\n****List of all days****");
+DaysOfWeek allw[]=DaysOfWeek.values();
+for(DaysOfWeek d : allw)
+System.out.println(d);
+}
+}

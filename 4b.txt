@@ -1,0 +1,40 @@
+MulInherDemo.java
+import java.io.*;
+import java.util.*;
+interface Rectangle{
+public void areaRect(int width, int height);
+}
+interface Triangle{
+public void areaTriangle(double base, double height);
+}
+class MulInher implements Rectangle, Triangle{
+public void areaRect(int width, int height )
+{
+int area = width * height ;
+System.out.println("The Area of Rectangle is " + area);
+}
+public void areaTriangle(double base,double height)
+{
+double area =(0.5*base*height);
+System.out.println("The Area of Triangle is " + area);
+}
+}
+public class MulInherDemo{
+public static void main(String args[])throws java.io.IOException
+{
+ System.out.println("Demonstrate Multiple Inheritance");
+ MulInher obj = new MulInher();
+ BufferedReader br=new BufferedReader(new
+InputStreamReader(System.in));
+ int w,h;
+ double b,hgt;
+ System.out.println("Enter Width and Height of the Rectangle");
+ w=Integer.parseInt(br.readLine());
+ h=Integer.parseInt(br.readLine());
+ obj.areaRect(w,h);
+ System.out.println("\nEnter base and height of the Triangle:");
+ b=Double.parseDouble(br.readLine());
+ hgt=Double.parseDouble(br.readLine());
+ obj.areaTriangle(b,hgt);
+}
+}

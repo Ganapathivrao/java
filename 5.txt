@@ -1,0 +1,101 @@
+Bank.java
+import java.io.*;
+import java.util.Scanner;
+class LessBalanceException extends Throwable{
+public String toString(){
+return("Re-Enter");
+}
+}
+class Account{
+private double balance;
+private int acc_no;
+Account(int anum){
+balance = 500;
+acc_no=anum;
+}
+void deposite(double dep_amt){
+balance=balance+dep_amt;
+}
+void withDraw(double w_amt){
+try{
+if(w_amt>balance)
+throw new LessBalanceException();
+}
+catch(LessBalanceException e){
+System.out.println("Withdraw amount is greater than
+balance "+ e);
+return;
+}
+balance=balance-w_amt;
+try{
+if(balance<500)
+throw new LessBalanceException();
+}
+catch(LessBalanceException e){
+System.out.println("Balance becoming less than 500 "+e);
+balance+=w_amt;
+return;
+}
+System.out.println("Withdraw Successfully");
+}
+void getBalance(){
+System.out.println("Current Balance of " + this.acc_no + "
+account=" +balance);
+}
+int getaccno(){
+return(acc_no);
+}
+}
+class Bank{
+public static void main(String args[]){
+Account[] c = new Account[2];
+int acc_no,i,flag;
+double amnt;
+Scanner inp= new Scanner(System.in);
+System.out.println("Creating Account for 2 people.....");
+System.out.println("Enter 1st Account Number: ");
+acc_no=(inp.nextInt());
+c[0] = new Account(acc_no);
+
+System.out.println("Enter 2nd Account Number: ");
+acc_no=(inp.nextInt());
+c[1] = new Account(acc_no);
+while(true){
+System.out.println("1. Deposite\n2. Withdraw\n 3.Balance\n
+4.Exit\n ");
+System.out.println("Enter your choice: ");
+int ch=(inp.nextInt());
+switch(ch){
+case 1:
+System.out.println("Enter deposit amount: ");
+amnt=(inp.nextDouble());
+System.out.println("Enter the account number:");
+acc_no=(inp.nextInt());
+if(c[0].getaccno()==acc_no)
+c[0].deposite(amnt);
+else if(c[1].getaccno()==acc_no)
+c[1].deposite(amnt);
+else
+ System.out.println("Invalid Account number..s");
+break;
+case 2:
+System.out.println("Enter the Withdraw amount:");
+amnt=(inp.nextInt());
+System.out.println("Enter the account number:");
+acc_no=(inp.nextInt());
+if(c[0].getaccno()==acc_no)
+c[0].withDraw(amnt);
+else if(c[1].getaccno()==acc_no)
+c[1].withDraw(amnt);
+else
+ System.out.println("Invalid Account number..s");
+break;
+case 3:
+for(i=0;i<2;i++)
+c[i].getBalance();
+break;
+default: return;
+}//end switch
+}//end while
+ }//end main()
+}//end class

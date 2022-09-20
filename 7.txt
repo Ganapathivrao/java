@@ -1,0 +1,116 @@
+QueueDemoException.java
+import java.io.*;
+class Queue
+{
+private int[] q;
+private int max,front,rear;
+public Queue(int n)
+{
+front = rear = -1;
+max = n;
+q = new int[max];
+}
+public void insert(int item)
+{
+try
+{
+if(rear == max-1)
+throw new QueOverflowException();
+else
+{
+if(front == -1)
+front = 0;
+q[++rear] = item;
+System.out.println("Inserted Successfully");
+}
+}
+catch(QueOverflowException e)
+{
+System.out.println("Error from Exception:" + e);
+}
+}
+public void remove()throws QueUnderflowException
+{
+if(front == -1)
+{
+throw new QueUnderflowException();
+}
+else if(front == rear)
+{
+System.out.println("Item Deleted: " + q[front]);
+front = rear = -1;
+}
+else
+System.out.println("Item Deleted: " + q[front++]);
+}
+public void display()
+{
+if(front == -1)
+{
+System.out.println("Queue is Empty\n");
+return;
+}
+else
+{
+System.out.println("\nThe content of Queue:");
+for(int i = front; i<=rear ;i++)
+System.out.print(q[i] + " " );
+}
+}
+}
+class QueOverflowException extends Throwable
+{
+public String toString()
+{
+return("Overflow exception: No space to add item");
+}
+}
+class QueUnderflowException extends Throwable
+{
+public String toString()
+{
+return("Underflow exception: Trying to remove from empty
+Queue");
+}
+}
+class QueueDemoException
+{
+public static void main(String[] args)throws java.io.IOException
+{
+int ele,n,ch;
+BufferedReader br=new BufferedReader(new
+InputStreamReader(System.in));
+System.out.println("Enter the Queue Size:");
+n=Integer.parseInt(br.readLine());
+Queue myq=new Queue(n);
+while(true)
+{
+System.out.println("\n1.Insert\n2.Delete\n
+3.Display\n4.Exit");
+System.out.println("Enter your Choice:");
+ch=Integer.parseInt(br.readLine());
+switch(ch)
+{
+case 1:
+System.out.println("Enter element:");
+ele=Integer.parseInt(br.readLine());
+myq.insert(ele);
+break;
+case 2:
+try
+{
+myq.remove();
+}
+catch(QueUnderflowException e)
+{
+ System.out.println("Error from class:" + e);
+}
+break;
+case 3:
+myq.display();
+break;
+default:return;
+}
+}
+}
+}

@@ -1,0 +1,40 @@
+StringHandling.java
+import java.io.*;
+class StringHandling{
+ public static void main(String args[])throws java.io.IOException
+ {
+StringBuffer str= new StringBuffer("Java Lab");
+BufferedReader br=new BufferedReader(new
+InputStreamReader(System.in));
+int ch;
+System.out.println("Default String: " + str);
+while(true){
+ System.out.println("1: Capacity\n 2: Reverse and Converts to Upper case\n
+3. Append to resultant\n 4. Exit");
+System.out.println("Enter your choice:");
+ch=Integer.parseInt(br.readLine());
+switch(ch){
+case 1:
+System.out.println("The Capacity of the
+String=" + str.capacity());
+break;
+case 2:
+System.out.println("The Reverse of the String="
++ str.reverse());
+String temp=new String(str);
+System.out.println("String in Upper case=" +
+temp.toUpperCase());
+break;
+case 3:
+System.out.println("Enter string to concate:");
+String str2=br.readLine();
+System.out.println("String after appended:" +
+str.append(str2));
+System.out.println("String =" + str);
+break;
+case 4: return;
+default: return;
+}
+}
+ }
+}
